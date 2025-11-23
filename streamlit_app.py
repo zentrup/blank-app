@@ -49,10 +49,10 @@ def get_last_update_times_by_site():
         site = table.split('_')[0]
         
         # Query to retrieve the most recent 'date' for each site from each table
-        query = f\"""
+        query = f"""
         SELECT MAX([date]) as last_update
         FROM metmonthly.{table};
-        \"""
+        """
         df = pd.read_sql(query, conn)
         
         # If we have data for this table, add it to the site_data dictionary
@@ -147,12 +147,12 @@ def create_kanban_board():
                 color = categorize_time(newest, "shift")
                 label = newest
 
-            st.markdown(f\"""
+            st.markdown(f"""
             <div style="background-color:{color}; padding:6px; 
                 margin-bottom:5px; border-radius:5px;">
                 <strong>{label}</strong>
             </div>
-            \""", unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
 
     # DAY COLUMN
     with columns[1]:
@@ -173,12 +173,12 @@ def create_kanban_board():
                 color = categorize_time(newest, "day")
                 label = newest
 
-            st.markdown(f\"""
+            st.markdown(f"""
             <div style="background-color:{color}; padding:6px; 
                 margin-bottom:5px; border-radius:5px;">
                 <strong>{label}</strong>
             </div>
-            \""", unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
 
     # MONTH COLUMN
     with columns[2]:
@@ -199,11 +199,11 @@ def create_kanban_board():
                 color = categorize_time(newest, "month")
                 label = newest
 
-            st.markdown(f\"""
+            st.markdown(f"""
             <div style="background-color:{color}; padding:6px; 
                 margin-bottom:5px; border-radius:5px;">
                 <strong>{label}</strong>
             </div>
-            \""", unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
 if __name__ == "__main__":
     create_kanban_board()
